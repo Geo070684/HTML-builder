@@ -1,32 +1,28 @@
-const { stdin, stdout } = process
 const fs = require('fs')
 const path = require('path')
+const readline=require('readline')
+const { stdin: input, stdout: output }=require('process')
 
 const pathText = path.join(__dirname, 'newFile.txt');
+const writeStream = fs.createWriteStream(pathText, "utf-8");
+const rl=readline.createInterface({input, output});
 
-const writeStream = fs.createWriteStream(pathText);
+rl.write('Hello, input your world, please)\n');
 
-// fs.writeFile(
-//     pathText,
-//     (error) => {
-//         if (error) throw error;
-//     }
-// )
-stdout.write("Введите текст!")
+rl.on("line", (text)=>{
+if(text.toString().trim() !== "exit"){
+  writeStream.write(`${text}\n`);
+    output.write("Good job,try again!)\n")
+} else {
+    rl.write("Bye! See u soon");
+    process.exit()
+}
+})
+rl.on('close',()=>{
+    rl.write("Good day!)");
+    process.exit()
+})
 
-// const path = require('path');
-// const fs = require('fs');
-// const readline = require('readline');
-// const process = require('process');
-// const input = process.stdin;
-// const output = process.stdout;
-
-// const rl = readline.createInterface({
-//     input,
-//     output
-// });
-
-// rl.write('Hello, input your world\n');
 
 // rl.on('line', (line)=>{
 

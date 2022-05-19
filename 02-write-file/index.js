@@ -23,21 +23,3 @@ rl.on('close',()=>{
     process.exit()
 })
 
-
-// rl.on('line', (line)=>{
-
-//     if (line !== 'exit') {
-//         writeStream.write(line);
-//         console.log('good job');
-        
-//     } else {
-//         rl.write('Bye, good day');
-//         process.exit(0);
-//     }
-    
-// })
-
-// rl.on('close', ()=> {
-//     rl.write('Bye');
-//     process.exit(0);
-// });

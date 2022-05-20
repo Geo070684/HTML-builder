@@ -21,14 +21,3 @@ fs.readdir(secretFolder,  (err, files) => {
     }
 })
 
-// const testFolder = path.join(__dirname,'secret-folder');
-// fs.readdir(testFolder, (err, files) => {
-//   files.forEach(file => {
-//     stat(path.join(__dirname,'secret-folder',file),(err, stats)=>{
-//       if(!stats.isDirectory()){
-//         console.log(path.parse(path.join(__dirname,'secret-folder', file)).name+'-'+path.extname(path.join(__dirname,'secret-folder',file)).substr(1)+'-'+stats.size);
-//       }
-//     });
-//   });
-// });
-// s

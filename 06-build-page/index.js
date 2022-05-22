@@ -66,39 +66,42 @@ fs.mkdir(path.join(__dirname, "project-dist", "assets"), { recursive: true }, er
             files.forEach(file => {
                 let oldFile = path.join(__dirname, "assets", file.name)
                 let copyFile = path.join(__dirname, "project-dist", "assets", file.name)
-                fs.copyFile(oldFile, copyFile), () => {
-                    if (err) {
-                        console.log(err)
-                    } else {
-                        fs.mkdir(path.join(__dirname, "project-dist", "assets", file.name), { recursive: true }, err => {
-                            if (err) console.log(err);
-                            fs.readdir(path.join(__dirname, "assets", file.name), (err, filesDep) => {
-                                if (err) console.log(err)
-                                else {
-                                    filesDep.forEach(fileDep => {
-                                        let filePathDep = path.join(__dirname, "assets", file.name, fileDep)
-                                        let filePathCopyDep = path.join(__dirname, "project-dist", "assets", file.name, fileDep)
-                                        fs.copyFile(filePathDep, filePathCopyDep), (err) => {
-                                            if (err) {
-                                                console.log(err);
-                                            }
+                if (file.isFile()) {
+                    fs.copyFile(oldFile, copyFile, (err) => {
+                        if (err) {
+                            console.log(err)
+                        }
+                    })
+                } else {
+                    fs.mkdir(path.join(__dirname, "project-dist", "assets", file.name), { recursive: true }, err => {
+                        if (err) console.log(err);
+                        fs.readdir(path.join(__dirname, "assets", file.name), (err, filesDep) => {
+                            if (err) console.log(err)
+                            else {
+                                filesDep.forEach(fileDep => {
+                                    let filePathDep = path.join(__dirname, "assets", file.name, fileDep)
+                                    let filePathCopyDep = path.join(__dirname, "project-dist", "assets", file.name, fileDep)
+                                    fs.copyFile(filePathDep, filePathCopyDep, (err) => {
+                                        if (err) {
+                                            console.log(err);
                                         }
                                     })
+                                })
 
-                                }
-
-                            })
-
+                            }
 
                         })
-                    }
+
+
+                    })
                 }
             })
-
-
         })
 
+
     })
+
 })
+
 
 build()

@@ -9,7 +9,7 @@ async function build() {
         await fs.promises.writeFile((path.join(__dirname, "project-dist", "index.html")), newTemplate);
         let newFileIndex = await fs.promises.readFile(path.join(__dirname, "project-dist", "index.html"), "utf-8");
         let result = newFileIndex.match(/[{]+(\w)+[}]+/g);
-
+// console.log(result)
         for (let item of result) {
             let newName = item.slice(2, -2)
             let newContent = await fs.promises.readFile(path.join(__dirname, "components", `${newName}.html`), "utf-8")
@@ -35,11 +35,8 @@ fs.readdir(path.join(__dirname, "styles"), (err, files) => {
 
                 newStream.on("data", chunk => {
                     newFile.write(chunk)
-
                 })
             }
-
-
         })
     }
 })

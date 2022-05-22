@@ -14,11 +14,8 @@ fs.readdir(path.join(__dirname, "styles"), (err, files) => {
 
                 newStream.on("data", chunk => {
                     newFile.write(chunk)
-                   
                 })
             }
-
-
         })
     } console.log("Проверь, файлы должы быть перемещены)")
 })

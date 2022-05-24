@@ -22,6 +22,9 @@ async function build() {
         console.log(err)
     }
 }
+
+build()
+
 const newFile = fs.createWriteStream(path.join(__dirname, 'project-dist', 'style.css'))
 
 fs.readdir(path.join(__dirname, "styles"), (err, files) => {
@@ -101,4 +104,3 @@ fs.mkdir(path.join(__dirname, "project-dist", "assets"), { recursive: true }, er
 })
 
 
-build()
